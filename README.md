@@ -67,9 +67,9 @@ This project demonstrates a stream processing system that implements user blocki
       docker exec -it kafka-00 /opt/bitnami/kafka/bin/kafka-topics.sh \
       --bootstrap-server kafka-00:9092 \
       --create \
-      --topic filtered_messages \
-      --partitions 1 \
-      --replication-factor 3
+      --topic messages \
+      --partitions 3 \
+      --replication-factor 2
       ```
     - filtered_messages: Processed messages.
       ```bash
@@ -77,8 +77,8 @@ This project demonstrates a stream processing system that implements user blocki
         --bootstrap-server kafka-00:9092 \
         --create \
         --topic filtered_messages \
-        --partitions 1 \
-        --replication-factor 3
+        --partitions 3 \
+        --replication-factor 2
       ```
     - create ksql streams and tables: 
         ```bash

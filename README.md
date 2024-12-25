@@ -50,12 +50,14 @@ This project demonstrates a stream processing system that implements user blocki
 1. **Clone the Repository**:  
    ```bash
    git clone https://github.com/johanijbabaj/yandex-praktikum-kafka_sprint_2.git
+   ```
+   ```bash
    cd yandex-praktikum-kafka_sprint_2
    ```
 
 2. **Start the Environment**:  
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 3. **Prepare Kafka Topics and Streams**:  

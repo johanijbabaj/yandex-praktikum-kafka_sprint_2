@@ -7,11 +7,9 @@ WORKDIR /app
 # Create the logs directory to avoid FileNotFoundError
 RUN mkdir -p /app/logs
 
-# Copy all project files into the container
-COPY . /app
 
 # Install dependencies from requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r app/requirements.txt
 
 COPY ./utils/wait-for-it.sh /usr/local/bin/wait-for-it.sh
 

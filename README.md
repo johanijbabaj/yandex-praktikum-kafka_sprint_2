@@ -63,7 +63,23 @@ This project demonstrates a stream processing system that implements user blocki
 3. **Prepare Kafka Topics and Streams**:  
   Create the required topics for the project using the Kafka CLI or Kafka UI tool [localhost:8085](http://localhost:8085/ui/clusters/kraft/all-topics?)
     - messages: Incoming messages.
+      ```bash
+      docker exec -it kafka-00 /opt/bitnami/kafka/bin/kafka-topics.sh \
+      --bootstrap-server kafka-00:9092 \
+      --create \
+      --topic filtered_messages \
+      --partitions 1 \
+      --replication-factor 3
+      ```
     - filtered_messages: Processed messages.
+      ```bash
+        docker exec -it kafka-00 /opt/bitnami/kafka/bin/kafka-topics.sh \
+        --bootstrap-server kafka-00:9092 \
+        --create \
+        --topic filtered_messages \
+        --partitions 1 \
+        --replication-factor 3
+      ```
     - create ksql streams and tables: 
         ```bash
       docker exec -i ksqldb-cli-00 ksql http://ksqldb-server-00:8088 < ksqldb/ksqldb-queries-prepair.sql
@@ -75,13 +91,8 @@ This project demonstrates a stream processing system that implements user blocki
     docker exec -it faust-app python utils/kafka_message_producer.py
     ```
 
-5. **Run Stream Processing**:  
-    Execute the stream processing code
-    ```bash
-    docker exec -it faust-app python utils/kafka_message_producer.py
-    ```
-6. **Check filtered_messages topic with UI:**
-    - 20% off the messages fro the *messages* topic from the blocked users shouldn't be sent to the *filtered_messages* topic
+5. **Check filtered_messages topic with UI:**
+    - 20% off the messages from the *messages* topic from the blocked users shouldn't be sent to the *filtered_messages* topic
     - 20% off the messages should be sent with censorshiped words and changed to the ****** in  *filtered_messages* topic
 
 ### Testing ksqlDB Analytics
@@ -101,6 +112,9 @@ This project demonstrates a stream processing system that implements user blocki
    - **Run all with UI from the file**:  
      use queries from the file documentation [ksqldb-queries-tests.sql](ksqlb/ksqldb-queries-tests.sql) 
      
+## Questions:
+
+- I can't find a way to write a query with LIMIT and ORDER BY to get the top 5 users. How can I do this?
   
 
 

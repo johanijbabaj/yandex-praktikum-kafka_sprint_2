@@ -7,7 +7,10 @@ SELECT * FROM total_unique_recipients;
 
 
 -- Count the top active users by message count
-SELECT * FROM users_activity;
+-- FIX IT: I can't find the way to use ORDER BY with LIMIT to get TOP users 
+SELECT * FROM users_activity 
+EMIT CHANGES 
+LIMIT 5;
 
 
 -- Aggregate user statistics
